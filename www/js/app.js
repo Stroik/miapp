@@ -69,7 +69,15 @@ angular.module('muniapp', ['ionic', 'muniapp.controllers', 'muniapp.services', '
         }
       }
     })
-
+    .state('app.post-comment', {
+      url: '/posts/:postSlug/comments',
+      views: {
+        'app-posts': {
+          templateUrl: 'templates/post-comment.html',
+          controller: 'CommentCtrl'
+        }
+      }
+    })
   .state('app.telefonos', {
     url: '/telefonos',
     views: {

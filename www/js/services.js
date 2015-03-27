@@ -3,7 +3,8 @@ angular.module('muniapp.services', [])
 .factory('Posts', function($http, $q, $localStorage) {
 
   return({
-    all: all
+    all: all,
+    one: one
   })
   
   function all(){

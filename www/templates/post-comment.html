@@ -1,0 +1,17 @@
+<ion-view view-title="Noticias">
+  <ion-content class="padding">
+  <div class="card" ng-repeat="comment in $storage.comments">
+     
+     <div class="item item-divider">
+      {{comment.name}}
+    </div>
+
+    <div class="item item-text-wrap">
+      <p ng-bind-html="comment.content"></p>
+    </div>
+    <div class="item item-divider">
+      <small style="font-size:9px;">{{comment.date}}</small>
+    </div>
+  </div>
+  </ion-content>
+</ion-view>

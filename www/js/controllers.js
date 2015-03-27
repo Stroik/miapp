@@ -13,21 +13,35 @@ angular.module('muniapp.controllers', [])
 	Posts.all().then(function(data){
 		setPosts(data.posts);
 	});
-
-		
 })
 
 .controller('PostDetailCtrl', function($scope, $stateParams, Posts, $localStorage, $filter) {
-	$scope.$storage = $localStorage;
+	$scope.$storage = $localStorage.$default({
+	    post: $scope.post,
+	    caca: 43
+	});
+
 	function setPost(elPost){
-		$localStorage.last_post = $scope.post = elPost;
+		$localStorage.post = $scope.post = elPost;
 	}
 
 	Posts.one($stateParams.postSlug).then(function(data){
-		setPost(data);
+		setPost(data.post);
 	});
 
 
+})
+
+.controller('CommentCtrl', function($scope, $stateParams, Posts, $localStorage) {
+  $scope.$storage = $localStorage;
+  function setComment(comments){
+  	$localStorage.comments = $scope.comments = comments;
+  }
+
+  Posts.one($stateParams.postSlug).then(function(data){
+  	setComment(data.post.comments);
+  	console.log(data.post.comments);
+  })
 })
 
 .controller('TramitesCtrl', function($scope, $stateParams, Posts, $localStorage) {
