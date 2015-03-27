@@ -1,0 +1,11 @@
+<ion-view view-title="Noticias">
+  <ion-content>
+    <div class="list">
+	    <a class="item item-thumbnail-left" ng-repeat="post in $storage.posts" href="#/app/posts/{{post.slug}}">
+	      <img src="{{post.thumbnail}}">
+	      <h2>{{post.title_plain}}</h2>
+	      <p ng-bind-html="post.excerpt"></p>
+	    </a>
+	</div>
+  </ion-content>
+</ion-view>

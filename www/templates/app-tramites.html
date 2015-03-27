@@ -1,0 +1,9 @@
+<ion-view view-title="Tramites">
+  <ion-content>
+    <ul>
+      <li ng-repeat="t in $storage.posts">
+      	<p ng-bind-html="t.title"></p>
+      </li>
+    </ul>
+  </ion-content>
+</ion-view>

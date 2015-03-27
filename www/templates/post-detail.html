@@ -1,0 +1,39 @@
+<ion-view view-title="Noticias">
+  <ion-content class="padding">
+  <div class="list card">
+     
+     <div class="item item-avatar">
+      <img src="{{post.thumbnail}}">
+      <h2>{{post.title_plain}}</h2>
+      <p>{{post.date}}</p>
+    </div>
+
+    <div class="item item-body">
+      <img class="full-image" src="{{post.thumbnail}}">
+      <p ng-bind-html="post.content">
+        
+      </p>
+      <p>
+        <a href="#" class="subdued">1 Like</a>
+        <a href="#" class="subdued">5 Comments</a>
+      </p>
+    </div>
+
+    <div class="item tabs tabs-secondary tabs-icon-left">
+      <a class="tab-item" href="#">
+        <i class="icon ion-thumbsup"></i>
+        Me gusta
+      </a>
+      <a class="tab-item" href="#">
+        <i class="icon ion-chatbox"></i>
+        Comentarios
+      </a>
+      <a class="tab-item" href="#">
+        <i class="icon ion-share"></i>
+        Compartir
+      </a>
+    </div>
+
+  </div>
+  </ion-content>
+</ion-view>

@@ -1,20 +1,39 @@
-angular.module('starter.controllers', [])
+angular.module('muniapp.controllers', [])
 
-.controller('DashCtrl', function($scope) {})
-
-.controller('ChatsCtrl', function($scope, Chats) {
-  $scope.chats = Chats.all();
-  $scope.remove = function(chat) {
-    Chats.remove(chat);
-  }
+.controller('InicioCtrl', function($scope) {
+	$scope.test = [{name: "Carlitos"},{name: "Leo"},{name: "Soruyo"},{name: "Marcos"}];
 })
 
-.controller('ChatDetailCtrl', function($scope, $stateParams, Chats) {
-  $scope.chat = Chats.get($stateParams.chatId);
+.controller('PostsCtrl', function($scope, Posts, $localStorage, $stateParams) {
+	$scope.$storage = $localStorage;
+	function setPosts(getPosts){
+		$localStorage.posts = $scope.posts = getPosts;
+	}
+
+	Posts.all().then(function(data){
+		setPosts(data.posts);
+	});
+
+		
 })
 
-.controller('AccountCtrl', function($scope) {
-  $scope.settings = {
-    enableFriends: true
-  };
+.controller('PostDetailCtrl', function($scope, $stateParams, Posts, $localStorage, $filter) {
+	$scope.$storage = $localStorage;
+	function setPost(elPost){
+		$localStorage.last_post = $scope.post = elPost;
+	}
+
+	Posts.one($stateParams.postSlug).then(function(data){
+		setPost(data);
+	});
+
+
+})
+
+.controller('TramitesCtrl', function($scope, $stateParams, Posts, $localStorage) {
+  $scope.$storage = $localStorage;
+})
+
+.controller('TelefonosCtrl', function($scope) {
+$scope.test = [{name: "carlitos"},{name: "Leo"},{name: "Soruyo"},{name: "Marcos"}];
 });
