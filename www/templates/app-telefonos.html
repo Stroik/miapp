@@ -1,0 +1,21 @@
+<ion-view view-title="Teléfonos útiles">
+  <ion-content>
+	<label class="item item-input">
+	  <i class="icon ion-search placeholder-icon"></i>
+	  <input type="search" placeholder="Buscar" ng-model="buscarTelefonos">
+	</label>
+
+    <div class="list">
+
+	  <div class="item item-button-right" ng-repeat="tel in telefonos | filter:buscarTelefonos">
+	    {{tel.nombre}}
+	    <button class="button button-energized">
+	    	<a href="tel:{{tel.numero}}">	
+	      		<i class="icon ion-ios-telephone-outline"></i>
+	      	</a>
+	    </button>
+	  </div>
+
+	</div>
+  </ion-content>
+</ion-view>

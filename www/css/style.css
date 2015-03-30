@@ -1,1 +1,90 @@
 /* Empty. Add your own CSS if you like */
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px; 
+    height: 0; 
+    overflow: hidden;
+}
+ 
+.video-container iframe,
+.video-container object,
+.video-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/*    HOME     */
+
+.content-home{
+	text-align: center;
+}
+.content-home .box-home{
+	font-size: 100%;
+  padding-top: 20%;
+  padding-bottom: 20%;
+  border-radius: 5px;
+}
+.content-home .box-home span{
+  font-size: 0.9em !important;
+  text-transform: uppercase;
+  text-decoration: none;
+  display: block;
+  color: #f0f0f0;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.content-home .box-home a{
+	font-size: 3em;
+	color: #f0f0f0;
+}
+.content-home .box-home a:hover, .content-home .box-home a:focus, .content-home .box-home a:active{
+	color: #f6f6f6;
+}
+.verde a{
+	font-size: 5em !important;	
+}
+
+
+.verde{
+	background-color: #035327;
+}
+.amarillo{
+	background-color: #FDC706;
+}
+.azul{
+	background-color: #0795BE;
+}
+.bar.bar-balanced{
+	border-color: #33CD5F;
+    background-color: #035327;
+    background-image: linear-gradient(0deg, #035327, #035327 50%, transparent 50%);
+    color: #fff;
+}
+.logo-muni{
+	text-align: center;
+	width: 100%;
+	  margin-top: -15px;
+  margin-bottom: -20px;
+}
+.logo-muni img{
+	width: 50%;
+	height: 100%;
+}
+.tabs-balanced > .tabs, .tabs.tabs-balanced {
+  border-color: #035327;
+  background-color: #035327;
+  background-image: linear-gradient(0deg, #A5F5BC, #46E774 50%, transparent 50%);
+  color: #fff;
+}
+.button-energized a{
+	color:#f0f0f0;
+	text-decoration: none;
+	}
+
+.button-energized a i{
+	font-weight: 900;
+}	

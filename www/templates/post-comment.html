@@ -1,7 +1,10 @@
 <ion-view view-title="Noticias">
   <ion-content class="padding">
-  <div class="card" ng-repeat="comment in $storage.comments">
-     
+  <div class="card" ng-repeat="comment in $storage.comments.comments">
+
+    <div ng-show="$storage.comments.length">
+      Sorry guachin!
+    </div> 
      <div class="item item-divider">
       {{comment.name}}
     </div>

@@ -1,9 +1,11 @@
 <ion-view view-title="Tramites">
   <ion-content>
-    <ul>
-      <li ng-repeat="t in $storage.posts">
-      	<p ng-bind-html="t.title"></p>
-      </li>
-    </ul>
+  	<div class="list">
+	    <a class="item item-thumbnail-left" ng-repeat="tramite in tramites" href="#/app/tramites/{{tramite.slug}}">
+	      <img src="{{tramite.thumbnail}}">
+	      <h2 ng-bind-html="tramite.title"></h2>
+	      <p ng-bind-html="tramite.excerpt"></p>
+	    </a>
+	</div>
   </ion-content>
 </ion-view>

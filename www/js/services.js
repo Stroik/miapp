@@ -4,7 +4,9 @@ angular.module('muniapp.services', [])
 
   return({
     all: all,
-    one: one
+    one: one,
+    getTramites: getTramites,
+    getTramite: getTramite
   })
   
   function all(){
@@ -28,6 +30,28 @@ angular.module('muniapp.services', [])
       }
     });
 
+    return(req.then(handleSuccess, handleError));
+  }
+
+  function getTramites(){
+    var req = $http({ 
+      method: "GET",
+      url: "http://mipaginaweb.com.ar/muniapp/api/get_posts/?post_type=service",
+      params: { 
+        action: "GET"
+      }
+    });
+    return(req.then(handleSuccess, handleError));
+  }
+
+  function getTramite(postSlug){
+    var req = $http({ 
+      method: "GET",
+      url: "http://mipaginaweb.com.ar/muniapp/api/get_post/?post_type=service&slug="+postSlug,
+      params: { 
+        action: "GET"
+      }
+    });
     return(req.then(handleSuccess, handleError));
   }
 

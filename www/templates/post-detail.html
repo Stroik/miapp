@@ -1,4 +1,4 @@
-<ion-view view-title="Noticias">
+<ion-view view-title="Ultimas noticias">
   <ion-content class="padding">
     <div class="list card">
        
@@ -7,11 +7,12 @@
         <h2>{{post.title_plain}}</h2>
         <p>{{post.date}}</p>
       </div>
-
+      
+      
       <div class="item item-body">
         <img class="full-image" src="{{post.thumbnail}}">
         <p ng-bind-html="post.content"></p>
-
+        <div class="video-container" ng-bind-html="player"></div>
         <p>
           <a href="#" class="subdued">1 Like</a>
           <a href="#/app/posts/{{post.slug}}/comments" class="subdued">{{post.comment_count}} Comments</a>
@@ -23,9 +24,9 @@
           <i class="icon ion-thumbsup"></i>
           Me gusta
         </a>
-        <a class="tab-item" href="#">
+        <a class="tab-item" href="#/app/posts/{{post.slug}}/comments">
           <i class="icon ion-chatbox"></i>
-          Comentarios
+          Comentar
         </a>
         <a class="tab-item" href="#">
           <i class="icon ion-share"></i>

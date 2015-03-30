@@ -1,6 +1,6 @@
 angular.module('muniapp', ['ionic', 'muniapp.controllers', 'muniapp.services', 'ngStorage'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $rootScope, $ionicLoading, $location, $timeout) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -12,7 +12,30 @@ angular.module('muniapp', ['ionic', 'muniapp.controllers', 'muniapp.services', '
       StatusBar.styleDefault();
     }
   });
-})
+
+  $rootScope.showLoading = function(msg) {
+      $ionicLoading.show({
+        template: msg || 'Loading',
+        animation: 'fade-in',
+        showBackdrop: true,
+        maxWidth: 200,
+        showDelay: 0
+      });
+    }
+
+    $rootScope.hideLoading = function() {
+      $ionicLoading.hide();
+    };
+
+    $rootScope.toast = function(msg) {
+      $rootScope.showLoading(msg);
+      $timeout(function() {
+        $rootScope.hideLoading();
+      }, 1500);
+    };
+    
+
+  })
 
 .config(function($stateProvider, $urlRouterProvider) {
 
@@ -50,6 +73,15 @@ angular.module('muniapp', ['ionic', 'muniapp.controllers', 'muniapp.services', '
       }
     }
   })
+  .state('app.tramite', {
+    url: '/tramites/:postSlug',
+    views: {
+      'app-tramites': {
+        templateUrl: 'templates/app-tramite-detail.html',
+        controller: 'TramiteDetailCtrl'
+      }
+    }
+  })
 
   .state('app.posts', {
       url: '/posts',
@@ -82,7 +114,7 @@ angular.module('muniapp', ['ionic', 'muniapp.controllers', 'muniapp.services', '
     url: '/telefonos',
     views: {
       'app-telefonos': {
-        templateUrl: 'templates/tab-account.html',
+        templateUrl: 'templates/app-telefonos.html',
         controller: 'TelefonosCtrl'
       }
     }
