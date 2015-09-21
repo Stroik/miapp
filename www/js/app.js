@@ -1,6 +1,6 @@
-angular.module('muniapp', ['ionic', 'muniapp.controllers', 'muniapp.services', 'ngStorage'])
+angular.module('muniapp', ['ionic', 'muniapp.controllers', 'muniapp.services', 'ngStorage', 'ngLodash','ionic-material'])
 
-.run(function($ionicPlatform, $rootScope, $ionicLoading, $location, $timeout) {
+.run(function($ionicPlatform, $rootScope, $ionicLoading, $location, $timeout, $localStorage, Posts) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -13,27 +13,17 @@ angular.module('muniapp', ['ionic', 'muniapp.controllers', 'muniapp.services', '
     }
   });
 
-  $rootScope.showLoading = function(msg) {
-      $ionicLoading.show({
-        template: msg || 'Loading',
-        animation: 'fade-in',
-        showBackdrop: true,
-        maxWidth: 200,
-        showDelay: 0
+    $rootScope.init = function(){
+      Posts.all().then(function(data){
+        $rootScope.$storage = $localStorage;
+        $localStorage.posts = data.posts;
       });
-    }
-
-    $rootScope.hideLoading = function() {
-      $ionicLoading.hide();
+      Posts.getTramites().then(function(data){
+        $localStorage.tramites = data.posts;
+      });
     };
 
-    $rootScope.toast = function(msg) {
-      $rootScope.showLoading(msg);
-      $timeout(function() {
-        $rootScope.hideLoading();
-      }, 1500);
-    };
-    
+    $rootScope.init();
 
   })
 

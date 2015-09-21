@@ -3,14 +3,14 @@
     <div class="list card">
        
       <div class="item item-avatar">
-        <img src="{{post.thumbnail}}">
+        <img ng-src="{{post.thumbnail}}">
         <h2>{{post.title_plain}}</h2>
         <p>{{post.date}}</p>
       </div>
       
       
       <div class="item item-body">
-        <img class="full-image" src="{{post.thumbnail}}">
+        <img class="full-image" ng-src="{{post.thumbnail}}">
         <p ng-bind-html="post.content"></p>
         <div class="video-container" ng-bind-html="player"></div>
         <p>

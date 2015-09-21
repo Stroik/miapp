@@ -14,27 +14,13 @@ angular.module('muniapp.controllers', [])
 
 .controller('PostsCtrl', function($scope, Posts, $localStorage, $stateParams, $rootScope) {
 	$scope.$storage = $localStorage;
-	function setPosts(getPosts){
-		$localStorage.posts = $scope.posts = getPosts;
-	}
-	Posts.all().then(function(data){
-		setPosts(data.posts);
-	});
+	$scope.posts = $localStorage.posts;
 })
 
-.controller('PostDetailCtrl', function($scope, $stateParams, Posts, $localStorage, $filter, $sce) {
-	Posts.one($stateParams.postSlug).then(function(data){
-		setPost(data.post);	
+.controller('PostDetailCtrl', function($scope, $stateParams, Posts, $localStorage, $sce) {
+	Posts.oneL($stateParams.postSlug).then(function(data){
+		$scope.post = data;
 	});
-	
-	function setPost(elPost){
-		$localStorage.post = $scope.post = elPost;
-		if($.isEmptyObject($localStorage.post.custom_fields)){
-			$scope.player = $sce.trustAsHtml('<iframe width="560" height="315" src="https://www.youtube.com/embed/DjxOJnDaUJM" frameborder="0" allowfullscreen></iframe>');
-		}else{
-			$scope.player = $sce.trustAsHtml($localStorage.post.custom_fields.video[0]);
-		}
-	}
 })
 
 .controller('CommentCtrl', function($scope, $stateParams, Posts, $localStorage) {
@@ -50,24 +36,14 @@ angular.module('muniapp.controllers', [])
 
 .controller('TramitesCtrl', function($scope, $stateParams, Posts, $localStorage) {
 	$scope.$storage = $localStorage;
- 	function setTramites(tramites){
-  		$localStorage.tramites = $scope.tramites = tramites;
-  	}
-  	Posts.getTramites().then(function(data){
-  		setTramites(data.posts);
-  		console.log(data.posts);
-  	})
+	$scope.tramites = $localStorage.tramites;
 })
 
 .controller('TramiteDetailCtrl', function($scope, $stateParams, Posts, $localStorage){
 	$scope.$storage = $localStorage;
-	function setTramite(tramite){ 
-		$localStorage.tramite = $scope.tramite = tramite;
-	}
-	Posts.getTramite($stateParams.postSlug).then(function(data){ 
-		setTramite(data.post);
-		console.log(data.post);
-	})
+	Posts.getTramite($stateParams.postSlug).then(function(data){
+		$scope.tramite = data;
+	});
 })
 
 .controller('TelefonosCtrl', function($scope) {

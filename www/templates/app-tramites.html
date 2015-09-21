@@ -1,11 +1,10 @@
 <ion-view view-title="Tramites">
-  <ion-content>
-  	<div class="list">
-	    <a class="item item-thumbnail-left" ng-repeat="tramite in tramites" href="#/app/tramites/{{tramite.slug}}">
-	      <img src="{{tramite.thumbnail}}">
-	      <h2 ng-bind-html="tramite.title"></h2>
-	      <p ng-bind-html="tramite.excerpt"></p>
-	    </a>
+  <ion-content class="has-header">
+	<div class="list">
+	  <a ng-repeat="tramite in tramites | orderBy: 'title'" href="#/app/tramites/{{tramite.slug}}" class="item item-icon-left" >
+	    <i ng-class="{{tramite.custom_fields.service_icon}}" class="icon"></i>
+	    {{tramite.title}}
+	  </a>
 	</div>
   </ion-content>
 </ion-view>

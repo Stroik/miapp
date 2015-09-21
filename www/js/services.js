@@ -1,18 +1,19 @@
-angular.module('muniapp.services', [])
+angular.module('muniapp.services', ['ngLodash'])
 
-.factory('Posts', function($http, $q, $localStorage) {
+.factory('Posts', function($http, $q, $localStorage, lodash) {
 
   return({
     all: all,
     one: one,
     getTramites: getTramites,
-    getTramite: getTramite
+    getTramite: getTramite,
+    oneL: oneL
   })
   
   function all(){
     var req = $http({
       method: "GET",
-      url: "http://www.mipaginaweb.com.ar/muniapp/?json=1",
+      url: "http://entremaresweb.com/miapp/?json=1",
       params: {
         action: "GET"
       }
@@ -20,23 +21,30 @@ angular.module('muniapp.services', [])
 
     return(req.then(handleSuccess, handleError));    
   }
+  function oneL(slug){
+    var q = $q.defer();
+      var posts = $localStorage.posts
+      var post = _.first(_.filter(posts, { 'slug' : slug }));
+      q.resolve(post);
+
+    return q.promise;
+  }
 
   function one(postSlug){
     var req = $http({
       method: "GET",
-      url: "http://mipaginaweb.com.ar/muniapp/?json=get_post&slug="+postSlug,
+      url: "http://entremaresweb.com/miapp/?json=get_post&slug="+postSlug,
       params:{
         action:"GET"
       }
     });
-
     return(req.then(handleSuccess, handleError));
   }
 
   function getTramites(){
     var req = $http({ 
       method: "GET",
-      url: "http://mipaginaweb.com.ar/muniapp/api/get_posts/?post_type=service",
+      url: "http://entremaresweb.com/miapp/?json=get_posts&post_type=service",
       params: { 
         action: "GET"
       }
@@ -44,15 +52,13 @@ angular.module('muniapp.services', [])
     return(req.then(handleSuccess, handleError));
   }
 
-  function getTramite(postSlug){
-    var req = $http({ 
-      method: "GET",
-      url: "http://mipaginaweb.com.ar/muniapp/api/get_post/?post_type=service&slug="+postSlug,
-      params: { 
-        action: "GET"
-      }
-    });
-    return(req.then(handleSuccess, handleError));
+  function getTramite(slug){
+    var q = $q.defer();
+    var services = $localStorage.tramites;
+    var service = _.first(_.filter(services, { 'slug' : slug }));
+    q.resolve(service);
+
+    return q.promise;
   }
 
   function handleError(response) {
@@ -66,4 +72,22 @@ angular.module('muniapp.services', [])
     return(response.data);
   }
 
+}).service('localStorageService', function () {
+  return{
+    getJSON: function(name) {
+      return JSON.parse(localStorage.getItem(name));
+    },
+    setJSON: function(name, value) {
+      localStorage.setItem(name, JSON.stringify(value));
+    },
+    getString: function(name) {
+      return localStorage.getItem(name);
+    },
+    setString: function(name, value) {
+      localStorage.setItem(name, value);
+    },
+    clear: function(){
+      localStorage.clear();
+    }
+  };
 });

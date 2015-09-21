@@ -5,5 +5,8 @@
     "ionic": "driftyco/ionic-bower#1.0.0-rc.1",
     "ngstorage": "~0.3.0",
     "jquery": "~2.1.3"
+  },
+  "dependencies": {
+    "robotodraft": "~1.1.0"
   }
 }
